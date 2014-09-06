@@ -1,0 +1,83 @@
+python test1.py 
+Site to User Initial List {'a.com': {}, 'b.com': {}, 'c.com': {}}
+Site To Users Final List is:  {'a.com': {'charlie': 1, 'bob': 1, 'andy': 1}, 'b.com': {'bob': 1, 'andy': 1}, 'c.com': {'charlie': 1}}
+
+a,b = 1 + 1 = 2
+a,c = 1 
+b,c = 0 + 0 
+
+a, b
+
+
+python test3.py 
+Site to User Initial List {'a': {}, 'c': {}, 'b': {}, 'e': {}, 'd': {}, 'g': {}, 'f': {}, 'h': {}}
+Site To Users Final List is:  {'a': {'A': 1, 'H': 1, 'C': 1}, 'c': {'C': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1, 'H': 1}, 'b': {'A': 1, 'C': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1}, 'e': {'B': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1}, 'd': {'C': 1}, 'g': {'A': 1, 'H': 1, 'E': 1, 'D': 1}, 'f': {'C': 1, 'G': 1}, 'h': {'A': 1, 'H': 1, 'C': 1, 'E': 1}}
+
+'a': {'A': 1, 'H': 1, 'C': 1}, ,      
+'b': {'A': 1, 'C': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1},
+'c': {'C': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1, 'H': 1}
+'d': {'C': 1},
+'e': {'B': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1},
+'f': {'C': 1, 'G': 1},
+'g': {'A': 1, 'H': 1, 'E': 1, 'D': 1},
+'h': {'A': 1, 'H': 1, 'C': 1, 'E': 1}}
+
+a,b = 1 + 1 = 2
+a,c = 1 + 1 = 2
+a,d = 1
+a,e = 0
+a,f = 1
+a,g = 1 + 1 = 2
+a,h = 1 + 1 + 1 = 3
+
+b,c = 1 + 1 + 1 + 1 = 4 
+b,d = 1 
+b,e = 1 + 1 + 1 + 1 = 4
+b,f = 1 + 1 = 2
+b,g = 1 + 1 + 1 = 3
+b,h = 1 + 1 + 1 = 3 
+
+c,d = 1 
+c,e = 1 + 1 + 1 + 1 = 4
+c,f = 1 + 1 = 2
+c,g = 1 + 1 + 1 = 3 
+c,h = 1 + 1 + 1 = 3
+
+d,e = 0
+d,f = 1 
+d,g = 0
+d,h = 1
+
+e,f = 1
+e,g = 1 + 1 = 2
+e,h = 1
+
+f,g = 0
+f,h = 1
+
+g,h = 1 + 1 + 1 = 3
+
+
+
+python test3.py 
+Site to User Initial List {'a': {}, 'c': {}, 'b': {}, 'e': {}, 'd': {}, 'g': {}, 'f': {}, 'h': {}}
+Site To Users Final List is:  {'a': {'A': 1, 'H': 1, 'C': 1}, 'c': {'C': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1, 'H': 1}, 'b': {'A': 1, 'C': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1}, 'e': {'B': 1, 'E': 1, 'D': 1, 'G': 1, 'F': 1}, 'd': {'C': 1}, 'g': {'A': 1, 'H': 1, 'E': 1, 'D': 1}, 'f': {'C': 1, 'G': 1}, 'h': {'A': 1, 'H': 1, 'C': 1, 'E': 1}}
+Site List of Keys:  ['a', 'c', 'b', 'e', 'd', 'g', 'f', 'h']
+
+
+python test4.py 
+Site to User Initial List {'a': {}, 'c': {}, 'b': {}, 'd': {}}
+Site To Users Final List is:  {'a': {'B': 1, 'E': 1, 'D': 1, 'F': 1}, 'c': {'B': 1, 'E': 1, 'D': 1}, 'b': {'A': 1, 'C': 1, 'B': 1, 'F': 1}, 'd': {'A': 1, 'C': 1, 'B': 1, 'D': 1, 'F': 1}}
+Site List of Keys:  ['a', 'c', 'b', 'd']
+ijCommon Value for Combo:  0 1  is:  3
+maxSoFar is:  3
+bestPair so far is:  ('a', 'c')
+ijCommon Value for Combo:  0 2  is:  2
+ijCommon Value for Combo:  0 3  is:  3
+ijCommon Value for Combo:  1 2  is:  1
+ijCommon Value for Combo:  1 3  is:  2
+ijCommon Value for Combo:  2 3  is:  4
+maxSoFar is:  4
+bestPair so far is:  ('b', 'd')
+Final set of Site to Users:  {'a': {'B': 1, 'E': 1, 'D': 1, 'F': 1}, 'c': {'B': 1, 'E': 1, 'D': 1}, 'b': {'A': 1, 'C': 1, 'B': 1, 'F': 1}, 'd': {'A': 1, 'C': 1, 'B': 1, 'D': 1, 'F': 1}}
+Successfully passed test4!
