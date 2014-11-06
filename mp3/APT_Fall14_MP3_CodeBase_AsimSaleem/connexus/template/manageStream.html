@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+<head>
+
+<!-- CSS -->
+<link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
+<link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+
+<!-- JS -->
+<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div class="row-fluid">
+					<h2>Connex.us</h2>
+				</div>
+				<div class="row-fluid">
+					<ul class="nav nav-pills">
+						<li class="active"><a href="#">Manage</a></li>
+						<li><a href="createStream">Create</a></li>
+						<li><a href="viewAllStream">View</a></li>
+						<li><a href="searchStream">Search</a></li>
+						<li><a href="trendingStream">Trending</a></li>
+						<li><a href="socialStream">Social</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Streams I Own</h3>
+			</div>
+			<div class="panel-body">
+			<form action="/delete" method="post" role="form">
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Last New Picture</th>
+							<th>Number of Pictures</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for mystream in my_streams %}
+							<tr>
+								<td class="delete_streamName"><a href="/viewSingleStream?streamName={{ mystream.streamName }}">{{ mystream.streamName }}</a></td>
+								<td>	
+									{% if mystream.pictureUpdateDate %}
+										{{ mystream.pictureUpdateDate }}
+									{% else %}
+										-
+									{% endif %}
+								<td>{{ mystream.pictureCount }}</td>
+								<td>
+									<input type="checkbox" value="" class="delete">
+ 								</td>								
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				</button>				
+				<button type="button" class="btn btn-info" id="deleteButton" disabled>
+				  <span class="glyphicon glyphicon-remove"></span> Delete Checked
+				</button>		
+			</form>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Streams I subscribe to</h3>
+			</div>
+			<div class="panel-body">
+				<form>
+					<table class="table table-striped table-hover" id="subscriberTable">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Last New Picture</th>
+								<th>Number of Pictures</th>
+								<th>Views</th>
+								<th>Unsubscribe</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for subdstream in subscribed_streams %}
+								<tr>
+									<td class="unsubscribe_streamName"><a href="/viewSingleStream?streamName={{ subdstream.streamName }}">{{ subdstream.streamName }}</a></td>
+									<td>
+										{% if subdstream.pictureUpdateDate %}
+											{{ subdstream.pictureUpdateDate }}
+										{% else %}
+											-
+										{% endif %}
+									</td>
+									<td>{{ subdstream.pictureCount }} </td>
+									<td>{{ subdstream.viewCount }}</td>
+									<td>									
+										<input type="checkbox" value="" class="unsubscribe">
+									</td>					
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+					<button type="button" class="btn btn-info" id="unsubscribeButton" disabled>
+					  <span class="glyphicon glyphicon-remove"></span> Unsubscribe Checked Streams
+					</button>				
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+var unsubscribeList = [];
+$(".unsubscribe").click(function() {
+
+    var $row = $(this).closest("tr");    // Find the row
+    var $text = $row.find(".unsubscribe_streamName").text(); // Find the text
+    if($(this).is(':checked')){
+	    unsubscribeList[unsubscribeList.length] = $text
+    }else{
+		var value_to_remove = $text;
+		unsubscribeList.splice(unsubscribeList.indexOf(value_to_remove), 1);
+     }
+
+  	$('#unsubscribeButton').attr('disabled','disabled');
+    if (unsubscribeList.length > 0){
+	   $('#unsubscribeButton').removeAttr('disabled');
+    }
+});
+
+$("#unsubscribeButton").click(function() {
+
+    var jsonUnsubscribeList = JSON.stringify(unsubscribeList);
+	var jsonStructure = '{' + 
+							'"streamNames"' + ':' + jsonUnsubscribeList  +  
+						'}';
+
+	//Make an Ajax call to Unsubscribe
+	$.ajax('/unsubscribeStream', {
+	    'type': 'POST',
+	    'async': false,
+	    'data': {
+	      'json': jsonStructure,
+	     },
+	     'dataType': 'json',
+	  }).done(function(data) {
+	 });
+});
+
+var deleteList = [];
+$(".delete").click(function() {
+
+    var $row = $(this).closest("tr");    // Find the row
+    var $text = $row.find(".delete_streamName").text(); // Find the text
+    if($(this).is(':checked')){
+	    deleteList[deleteList.length] = $text
+    }else{
+		var value_to_remove = $text;
+		deleteList.splice(deleteList.indexOf(value_to_remove), 1);
+     }
+
+  	$('#deleteButton').attr('disabled','disabled');
+    if (deleteList.length > 0){
+	   $('#deleteButton').removeAttr('disabled');
+    }
+});
+
+$("#deleteButton").click(function() {
+
+    var jsonDeleteList = JSON.stringify(deleteList);
+	var jsonStructure = '{' + 
+							'"streamNames"' + ':' + jsonDeleteList  +  
+						'}';
+	//Make an Ajax call to Delete
+	$.ajax('/deleteStream', {
+	    'type': 'POST',
+	    'async': false,
+	    'data': {
+	      'json': jsonStructure,
+	     },
+	     'dataType': 'json',
+	  }).done(function(data) {
+	  	alert("DONE");
+	  });
+});
+
+$( document ).ajaxComplete(function() {
+	location.reload();
+});
+
+</script>
+</html>
+{% endautoescape %}

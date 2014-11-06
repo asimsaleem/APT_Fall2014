@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- View Nearby Streams Mockup - START -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical"
+    android:background="@drawable/background"
+	tools:context=".MainActivity">
+	<TextView
+		android:id="@+id/nearbyStreamsTxtId"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="5dp"
+		android:gravity="center"
+		android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceSmallInverse"
+        android:textColor="@android:color/holo_orange_dark"
+		android:textStyle="bold"
+		android:textSize="15sp"
+		android:typeface="serif"
+   	    android:text="Nearby Streams"
+   	    android:paddingLeft="5dp"
+   	    android:paddingRight="5dp"
+   	    android:layout_gravity="center"/>
+		<GridView
+		    android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+ 			android:columnWidth="75dp"
+			android:numColumns="4"
+			android:verticalSpacing="5dp"
+			android:horizontalSpacing="5dp"
+			android:stretchMode="columnWidth"
+			android:gravity="center"
+			android:id="@+id/gridView">
+		</GridView>
+	<!--</LinearLayout>-->
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/background"
+        android:layout_marginTop="5dip">
+        <!--
+ 		<TextView
+			android:id="@+id/nearbyPicsTxtId"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+		    android:textColor="#000000"
+			android:textStyle="bold"
+			android:textSize="15sp"
+			android:typeface="serif"
+			android:text="@string/nearbyPicsTxt"
+            android:textAppearance="?android:attr/textAppearanceSmallInverse"
+			android:paddingLeft="5dp"
+			android:paddingRight="5dp"
+			android:paddingBottom="0dp"
+            android:layout_marginRight="1dp"
+            android:layout_marginLeft="1dp"/> -->
+		<Button
+			android:id="@+id/moreBtnId"
+            android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:layout_marginBottom="0dp"
+			android:layout_marginRight="1dp"
+			android:layout_marginLeft="1dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@android:color/black"
+            android:textStyle="normal"
+            android:typeface="sans"
+            android:background="@android:drawable/btn_default"
+			android:text="@string/moreBtn" />
+		<Button
+			android:id="@+id/streamsBtnId"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginRight="5dp"
+			android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/moreBtnId"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textColor="@android:color/black"
+            android:textStyle="normal"
+            android:typeface="sans"
+            android:background="@android:drawable/btn_default"
+			android:text="@string/viewAllStreamsBtn" />
+	</RelativeLayout>
+</LinearLayout>
+<!-- View Nearby Streams Mockup - END -->

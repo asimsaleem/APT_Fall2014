@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Connexus Mobile</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_display_message">My Message</string>
+    <string name="hallo_android_welt">Hallo Android Welt!</string>
+
+    <!--  Relative Layout -->
+    <string name="reminder">Reminder!</string>
+    <string name="done">Done!</string>
+
+    <!-- Login Page -->
+    <string name="connexusTitle">Connexus!</string>
+    <string name="gmailLoginTxt">Login with Gmail</string>
+    <string name="gmailId">Gmail Id</string>
+    <string name="gmailPwd">Gmail Password</string>
+    <string name="loginBtn">Login</string>
+    <string name="viewStreamsBtn">View Streams</string>
+
+    <!-- View All Streams Page -->
+    <string name="searchStreamBtn">Search</string>
+    <string name="nearbyBtn">Nearby</string>
+    <string name="searchText">  Find Streams</string>
+    <string name="mySubscribedStreamsBtn">My Subscribed Streams</string>
+
+    <!-- View My Streams Page -->
+    <string name="mySearchStreamBtn">Search</string>
+    <string name="myNearbyBtn">Nearby</string>
+    <string name="mySearchText">  Find Streams</string>
+
+    <!-- View a Stream (Single Stream) Page -->
+    <string name="viewSingleStreamTxt">View a Stream: </string>
+    <string name="morePicsBtn">More Pictures</string>
+    <string name="uploadImgBtn">Upload an Image</string>
+    <string name="streamsBtn">Streams</string>
+
+    <!--  View Nearby Streams Page -->
+    <string name="nearbyPicsTxt">Nearby pictures</string>
+    <string name="moreBtn">More</string>
+    <string name="viewAllStreamsBtn">View All Streams</string>
+
+    <!--  Search Results Page -->
+    <string name="moreSrchResultsBtn">More search results</string>
+    <string name="srchResultsTxt">123 results for Lucknow, click on an image to view stream</string>
+
+    <!-- Upload Page -->
+    <string name="chooseFrmYourLibraryBtn">Choose from library</string>
+    <string name="useCameraBtn">Use Camera</string>
+    <string name="addMsgOrTag">Add a message and/or tags</string>
+    <string name="uploadBtn">Upload</string>
+    <string name="streamTxt">Stream: </string>
+
+
+    <!-- Camera Page -->
+    <string name="takePicBtn">Take a Picture</string>
+    <string name="usePicBtn">Use this Picture</string>
+    <string name="icon_content_description" />
+
+</resources>

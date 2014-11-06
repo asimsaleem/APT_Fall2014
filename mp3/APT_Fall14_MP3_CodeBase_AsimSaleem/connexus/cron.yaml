@@ -1,0 +1,13 @@
+cron:
+- description: update trending stream
+  url: /updateTrendingStream
+  schedule: every 24 hours
+- description: 5 minutes mail
+  url: /mail5MinsStream
+  schedule: every 24 hours
+- description: 1 hour mail
+  url: /mailHourlyStream
+  schedule: every 24 hours
+- description: Every Day mail
+  url: /mailDailyStream
+  schedule: every 24 hours

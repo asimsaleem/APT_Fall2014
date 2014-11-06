@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+<head>
+
+<!-- CSS -->
+<link type="text/css" rel="stylesheet" href="stylesheets/bootstrap-theme.min.css" />
+<link type="text/css" rel="stylesheet" href="stylesheets/bootstrap.min.css" />
+
+<!-- JS -->
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<br>
+		<br>
+		<div class="panel">
+			<div class="panel-heading">
+				<h2>Welcome to Connexus!</h2>
+			</div>
+			<div class="panel-body">
+				<div class="row col-xs-6">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">Share the world!!</h3>
+						</div>
+						<div class="panel-body">
+							<form role="form" action="/register" method="POST">
+								<div class="form-group">
+									<label for="email">User Id</label>
+									<!--<input type="email" class="form-control col-md-3" id="emailAddress" placeholder="Enter Email" required> -->
+									<input type="text" class="form-control col-md-3" id="userId" placeholder="Enter Email" required>
+								</div>
+								<div class="form-group">
+									<label for="password">Password</label>
+									<!--<input type="password" class="form-control col-md-3" id="emailPwd" placeholder="Enter Password" required> -->
+									<input type="text" class="form-control col-md-3" id="userPwd" placeholder="Enter Password" required>
+								</div>
+								<br>
+								<br>
+								<button type="submit" class="btn btn-info">Register</button>
+								<a href="{{ login_url }}" class="btn btn-primary btn-lg">Login</a>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+{% endautoescape %}

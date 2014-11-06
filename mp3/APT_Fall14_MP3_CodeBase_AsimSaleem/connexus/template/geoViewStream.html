@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<!-- CSS -->
+<link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
+<link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/stylesheets/classic-min.css">
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+
+<!-- JS -->
+<script src="/js/jquery-1.11.1.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- GEO LOCATION PLUGIN - START -->
+<script type="text/javascript" src="/js/markerclusterer.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.min.js"></script>
+<script type="text/javascript" src="/js/jQDateRangeSlider-min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.full.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.microdata.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.microformat.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.overlays.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.rdfa.min.js"></script>
+<script type="text/javascript" src="/js/jquery.ui.map.services.min.js"></script>
+<!-- GEO LOCATION PLUGIN - END -->
+
+<script>
+//We need to bind the map with the "init" event otherwise bounds will be null
+var markerClusterer = "";
+var map;
+var markers = [];
+
+$(function(){
+ 	
+	$stream_name_glbl = $("#streamName").val();
+	
+	var currentDate = new Date();
+  	var day = currentDate.getDate() + 2; //Making it 2 because we need to accomodate for time also
+	day = day > 9 ? day : "0" + day;
+
+  	var month = currentDate.getMonth() + 1;
+	month = month > 9 ? month : "0" + month;
+  	
+  	var year = currentDate.getFullYear()
+
+  	var max2_data = year + "-" + month + "-" + day; 
+  	var min2_data = (year-1) + "-" + month + "-" + day;
+
+	var min2 = new Date(min2_data);
+	var max2 = new Date(max2_data);
+
+	
+	$('#map_canvas').gmap().bind('init', function(evt, map) { 
+        executeJSONQueryToPopulateMap(min2, max2);
+		$("#slider-range").on("valuesChanged", function(e, data){
+			executeJSONQueryToPopulateMap(data.values.min, data.values.max);
+		}); //End of SLIDE
+	}); //End of BIND
+	//google.maps.event.addDomListener(window, 'load', initialize);
+});
+
+function executeJSONQueryToPopulateMap(startDate, endDate){
+	
+	//$('#map_canvas').gmap('destroy');	
+	//Make an Ajax call here to get the updated list of Images and repopulate the screen
+	var jsonStreamName = JSON.stringify($stream_name_glbl);
+	//var jsonStartDate = JSON.stringify(data.values.min);
+	//var jsonEndDate = JSON.stringify(data.values.max);
+	var jsonStartDate = JSON.stringify(startDate);
+	var jsonEndDate = JSON.stringify(endDate);
+
+
+	var jsonStructure = '{' + 
+							'"streamName"' + ':' + jsonStreamName  + ',' + 
+							'"startDate"' + ':' + jsonStartDate  + ',' + 
+							'"endDate"' + ':' + jsonEndDate + ',' + 
+						'}';
+	console.log(jsonStructure);
+
+	$jsonUrl = '/pictureLocations?streamName=' + $("#streamName").val() + 
+				"&startDate=" + jsonStartDate  + 
+				"&endDate=" + jsonEndDate;
+	if(markerClusterer != ""){
+		markerClusterer.clearMarkers();
+		deleteMarkers();
+	}
+
+	$.getJSON($jsonUrl , function(data) { 
+		
+		if(data.markers.length > 0){
+			deleteMarkers();
+        	$('#map_canvas').gmap('clear', 'markers');
+			$.each(data.markers, function(i, m) {
+	        	//alert("Setting Latlng");
+	        	var latLng = new google.maps.LatLng(m.latitude, m.longitude);
+				$('#map_canvas').gmap('addMarker', 
+					  	   				  { 'position': latLng, 
+										    'bounds': true }).mouseover(function() {
+							$imgUrl = '<img src=' + m.imgUrl  + ' + height="100" width="100" >';
+						$('#map_canvas').gmap('openInfoWindow', { 'content': $imgUrl }, this);
+				});
+
+					//Add Marker to the Map locally
+					addMarker(latLng);
+	        });
+			markerClusterer = new MarkerClusterer(
+											 $('#map_canvas').gmap('get', 'map'), 
+											 $('#map_canvas').gmap('get', 'markers')
+										);
+			$('#map_canvas').gmap('set', 'MarkerClusterer', markerClusterer);
+			/*
+				$('#map_canvas').gmap('set', 'MarkerClusterer', new MarkerClusterer($('#map_canvas').gmap('get', 'map'), $('#map_canvas').gmap('get', 'markers'))); */
+	        $('#map_canvas').gmap('option', 'mapTypeId', google.maps.MapTypeId.SATELLITE);
+	        $('#map_canvas').gmap('option', 'zoom', 3);
+		}
+	}); //End of JSON
+}
+
+
+// Add a marker to the map and push to the array.
+function addMarker(location) {
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+  //alert("Pushing into the Markers Array0");
+  markers.push(marker);
+}
+
+// Sets the map on all markers in the array.
+function setAllMap(map) {
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(map);
+  }
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+//alert("Inside ClearMarkers....");
+  setAllMap(null);
+}
+
+// Shows any markers currently in the array.
+function showMarkers() {
+  setAllMap(map);
+}
+
+// Deletes all markers in the array by removing references to them.
+function deleteMarkers() {
+ //alert("Delete Markers");
+  clearMarkers();
+  markers = [];
+}
+
+$(function() {
+	var currentDate = new Date();
+  	var day = currentDate.getDate(); 
+  	day = day + 2; //Making it 2 because instead of Date + 00:00:00 time, we need to be able to get any time for that day
+	day = day > 9 ? day : "0" + day;
+
+  	var month = currentDate.getMonth() + 1;
+	month = month > 9 ? month : "0" + month;
+  	
+  	var year = currentDate.getFullYear()
+
+  	var max2_data = year + "-" + month + "-" + day; 
+  	var min2_data = (year-1) + "-" + month + "-" + day;
+
+	var min2 = new Date(min2_data);
+	var max2 = new Date(max2_data);
+
+	function addZero(val) {
+	    if (val < 10) {
+	        return "0" + val;
+	    }
+
+	    return val;
+	}
+
+	$("#slider-range").dateRangeSlider({
+	    bounds: {
+	        "min": min2,
+	        "max": max2
+	    },
+	    defaultValues: {
+	        min: min2,
+	        max: max2
+	    }
+	});
+});
+
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div class="row-fluid">
+					<h2>Connex.us</h2>
+				</div>
+				<div class="row-fluid">
+					<ul class="nav nav-pills">
+						<li><a href="manageStream">Manage</a></li>
+						<li><a href="createStream">Create</a></li>
+						<li><a href="viewAllStream">View</a></li>
+						<li><a href="searchStream">Search</a></li>
+						<li><a href="trendingStream">Trending</a></li>
+						<li><a href="socialStream">Social</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<input type="hidden" value="{{stream_name}}" id="streamName">
+		<div class="panel panel-default" id="mapPage">
+			<div class="panel-heading">
+				<h3 class="panel-title">Geo View</h3>
+			</div>
+			<div class="panel-body">
+				<div id="map_canvas" style="width:100%;height:500px;"></div>
+			</div>
+			<div class="panel-footer">
+				<div id="slider-range"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

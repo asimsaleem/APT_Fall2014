@@ -1,0 +1,57 @@
+application: connexussaleem
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: false #Change it back to true after testing
+
+handlers:
+
+- url: /stylesheets
+  mime_type: text/css
+  static_dir: includes/static/stylesheets
+
+- url: /fonts
+  static_files: includes/static/\1
+  upload: includes/static/(.*\.(eot|svg|ttf|woff))
+
+- url: /(.*\.eot)
+  mime_type: application/vnd.ms-fontobject
+  static_files: includes/static/\1
+  upload: includes/static/(.*\.eot)
+
+- url: /(.*\.(svg|svgz))
+  mime_type: images/svg+xml
+  static_files: includes/static/\1
+  upload: includes/static/(.*\.(svg|svgz))
+
+- url: /(.*\.ttf)
+  mime_type: font/truetype
+  static_files: includes/static/\1
+  upload: includes/static/(.*\.ttf)
+
+- url: /(.*\.woff)
+  mime_type: application/x-font-woff
+  static_files: includes/static/\1
+  upload: includes/static/(.*\.woff)
+
+- url: /js
+  mime_type: text/javascript
+  static_dir: includes/static/js
+
+- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  static_files: static/\1
+  upload: includes/static/imgs/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+
+- url: /test.*
+  script: gaeunit.py
+
+- url: /.*
+  script: connexus.application
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+- name: django
+  version: latest

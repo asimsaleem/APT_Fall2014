@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% autoescape true %}
+<html>
+<head>
+
+<!-- CSS -->
+<link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap-theme.min.css" />
+<link type="text/css" rel="stylesheet" href="/stylesheets/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="/stylesheets/common.css" />
+<link type="text/css" rel="stylesheet" href="/stylesheets/custom-theme/jquery-ui-1.10.0.custom.css" />
+
+<!-- JS -->
+<script src="/js/jquery-2.1.1.min.js"></script>
+<script src="/js/jquery-ui.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/freewall.js"></script>
+<script>
+	$(function() {
+		var cache = {};
+		$( "#searchText" ).autocomplete({
+			minLength: 1,
+			source: function( request, response ) {
+				var term = request.term;
+				if ( term in cache ) {
+					response( cache[ term ] );
+					return;
+				}
+	 
+				$.getJSON( "/searchTypeAheadStream", request, function( data, status, xhr ) {
+					cache[ term ] = data;
+					response( data );
+				});
+			}
+    	});
+	});
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<div class="row-fluid">
+					<h2>Connex.us</h2>
+				</div>
+				<div class="row-fluid">
+					<ul class="nav nav-pills">
+						<li><a href="manageStream">Manage</a></li>
+						<li><a href="createStream">Create</a></li>
+						<li><a href="viewAllStream">View</a></li>
+						<li class="active"><a href="#">Search</a></li>
+						<li><a href="trendingStream">Trending</a></li>
+						<li><a href="socialStream">Social</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-5">
+				<form class="form-search well" action="/search" method="post">
+					<div class="input-append">
+						<span class="glyphicon glyphicon-search"></span>
+						<input type="text" class="span2 search-query" name="searchTerm" id="searchText" value="{{search_term}}">
+					    <button type="submit" class="btn btn-info" id="searchButton">Search</button>
+   					    <button type="submit" class="btn btn-info">Rebuild completion index</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						{% if results_count  %}
+          					<p>{{results_count}} results for <strong>{{search_term}}</strong></p>
+          					<p>Click on an Image to view stream </p>
+          				{% else %}
+          					{% if search_term %} 
+ 							<div class="alert alert-danger" role="alert">No Records Found for the Search Term  <strong>{{search_term}}</strong></div>
+ 							{% endif %}
+           				{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+		{% if results_count  %}
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">View All Streams</h3>
+					</div>
+					<div class="panel-body">
+						<div id="img-container">
+							{% for stream in searched_streams %}
+	             			<div class="thumbnail">
+	             				<a href="/viewSingleStream?streamName={{ stream.streamName }}">
+	             					<img src="{{stream.coverImgUrl}}" class="img-responsive" alt="{{stream.streamName}}"></a>
+	         					<div class="caption">{{stream.streamName}}</div>
+	             			</div>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+	<script type="text/javascript">
+		$(function(){
+			var wall = new freewall("#img-container");
+			wall.fitWidth();
+		});		
+
+		$("#searchButton").click(function(event){
+			searchValue = $('input[type=text]').val()
+			if(searchValue) { // returns true if the string is not empty
+		    } else { // no file was selected
+		    	 $(this).after(
+		        '<br><br>' + 
+		        	'<div class="alert alert-danger alert-dismissable">'+
+		            '<button type="button" class="close" ' + 
+		                    'data-dismiss="alert" aria-hidden="true">' + 
+		                '&times;' + 
+		            '</button>' + 
+		            'Please provide a value before clicking Search' + 
+		         '</div>');
+		        event.preventDefault();
+		    }
+		});
+	</script>
+</body>
+</html>
+{% endautoescape %}
