@@ -546,6 +546,8 @@ public class MainActivity extends Activity
         Log.e(TAG, "onUploadImageButtonClick: Set the Response data into the Bundle to pass it to the View All Stream Fragment Handler");
         Bundle bundle = new Bundle();
         bundle.putString("streamName", streamName);
+        Log.e(TAG, "onUploadImageButtonClick: Global File PAth if any is: " + callbackFilePathGlbl);
+        bundle.putString("filePath", callbackFilePathGlbl);
         cameraUploadFragment.setArguments(bundle);
 
         // Replace whatever is in the fragment_container view with this fragment,
@@ -565,7 +567,7 @@ public class MainActivity extends Activity
 
 
     /******** Camera Page - START ******************/
-    private void useCustomCamera(){
+    private void useCustomCamera(String streamName){
 
 
         // Create new fragment and transaction
@@ -573,10 +575,11 @@ public class MainActivity extends Activity
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
         Log.e(TAG, "onSearchStreamButtonClick: Set the Response data into the Bundle to pass it to the View All Stream Fragment Handler");
-        //Bundle bundle = new Bundle();
-        //bundle.putString("searchResultsStreamResponse", responseData);
-        //bundle.putString("searchTerm", searchTerm);
-        //customCameraFragment.setArguments(bundle);
+
+
+        Bundle bundle = new Bundle();
+        bundle.putString("streamName", streamName);
+        customCameraFragment.setArguments(bundle);
 
         // Replace whatever is in the fragment_container view with this fragment,
         // and add the transaction to the back stack
@@ -592,9 +595,14 @@ public class MainActivity extends Activity
         Log.e(TAG, "onTakePictureButtonClick: TAKE PICTURE BUTTON CLICKED IN THE FRAGMENT");
     }
 
+    public static String callbackFilePathGlbl;
     @Override
-    public void onUsePictureButtonClick() {
+    public void onUsePictureButtonClick(File callBackFile, String streamName) {
         Log.e(TAG, "onUsePictureButtonClick: USE PICTURE BUTTON CLICKED IN THE FRAGMENT");
+        Log.e(TAG, "Callback File is: " + callBackFile + streamName);
+        Log.e(TAG, "CallBack File PAth is: " + callBackFile.getAbsolutePath());
+        callbackFilePathGlbl = callBackFile.getAbsolutePath();
+        onUploadImageButtonClick(streamName);
     }
 
     @Override
@@ -628,7 +636,8 @@ public class MainActivity extends Activity
     @Override
     public void onUseCameraStreamButtonClick(String streamName) {
         Log.e(TAG, "onUseCameraStreamButtonClick: ON USE CAMERA BUTTON CLICK");
-        useDefaultCamera();
+        //useDefaultCamera();
+        useCustomCamera(streamName);
     }
 
 
@@ -706,28 +715,36 @@ public class MainActivity extends Activity
     }
 
     @Override
-    public void onUploadButtonClick(final String streamName) {
+    public void onUploadButtonClick(final String streamName, final String filePath) {
 
         Log.e(TAG, "onUploadButtonClick: UPLOAD BUTTON CLICKED IN THE FRAGMENT with Stream Name: " + streamName);
-        Log.e(TAG, "onUploadButtonClick: Trying NEW Cursor Logic with Selected file URI: " + selectedFileUri);
+        Log.e(TAG, "onUploadButtonClick: Selected file URI for Cursor Logic: " + selectedFileUri);
+        Log.e(TAG, "onUploadButtonClick: Custom file Path: " + filePath);
 
-        if(selectedFileUri == null){
+        if(selectedFileUri == null && filePath == null){
             Toast.makeText(getApplicationContext(),"Please click/select a Picture to Upload first!!!!", Toast.LENGTH_LONG).show();
             return;
         }
 
         String[] filePathColumn = {Media.DATA};
         String picturePath = "";
-        Cursor cursor = getContentResolver().query(selectedFileUri,filePathColumn, null, null, null);
-        if(cursor != null) {
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            Log.e(TAG, "onUploadButtonClick: Gallery Picture Path is: " + picturePath);
-            cursor.close();
-        }else{
+        if(selectedFileUri != null) {
+            Cursor cursor = getContentResolver().query(selectedFileUri, filePathColumn, null, null, null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                picturePath = cursor.getString(columnIndex);
+                selectedFileUri = null;
+                Log.e(TAG, "onUploadButtonClick: Gallery Picture Path is: " + picturePath);
+                cursor.close();
+            }
+        }else if (filePath != null){
+            //picturePath = selectedFileUri.toString(); //Default Camera
+            Log.e(TAG, "Custom File Path is: " + filePath);
+            picturePath = filePath; //Custom Camera
             Log.e(TAG, "onUploadButtonClick: Camera Picture Path is: " + picturePath);
-            picturePath = selectedFileUri.toString();
+        }else{
+            Toast.makeText(getApplicationContext(),"Image could not be found at specified location. Upload Failed", Toast.LENGTH_LONG).show();
         }
 
         Log.e(TAG, "onUploadButtonClick: Gallery Mode:  Selected Image is being set into the Image View");
@@ -769,8 +786,12 @@ public class MainActivity extends Activity
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                         Log.e(TAG, "onUploadButtonClick: SUCCESS");
+                        Log.e(TAG, "onUploadButtonClick: Resetting the File Path to NULL");
+                        callbackFilePathGlbl = null;
                         Log.e(TAG, "onUploadButtonClick: Redirecting to the Single Stream Page with Stream Name: " + streamName);
                         onImageStreamButtonClick(streamName);
+
+
                     }
 
                     @Override
@@ -778,6 +799,9 @@ public class MainActivity extends Activity
                         String errorResponseStr = new String(errorResponse);
                         Log.e(TAG, "onUploadButtonClick: Error Message Response is: " + errorResponseStr);
                         Log.e(TAG, "There was a problem in retrieving the url : " + e.toString());
+                        Log.e(TAG, "onUploadButtonClick: Resetting the File Path to NULL");
+                        callbackFilePathGlbl = null;
+
                     }
                 });
             }
