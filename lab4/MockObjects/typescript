@@ -1,0 +1,33 @@
+Script started on Wed Nov 19 23:21:08 2014
+[?1034hbash-3.2$ javac -cp junit-4.11.jar:.:mockobjects-0.6-core.jar:guava-10.0.1.jar:selenium-server-standalone-2.11.0.jar:mo ckobjects-0.6-j1.4-j2ee1.2.jar:. TestingLabConverterServlet.java Test_TestingLabConverterServlet.java
+bash-3.2$ java -cp junit-4.11.jar:.:mockobjects-0.6-core.jar:guava-10.0.1.jar:selenium-server-standalone-2.11.0.jar:moc kobjects-0.6-j1.4-j2ee1.2.jar org.junit.runner.JUnitCore Test_TestingLabConverterServlet
+JUnit version 4.11
+.Testing for NULL or No parameter being passed....
+Setting up the Mock HttpServlet Request and Response objects
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Verifying if the Response returned is as expected..
+Passed
+.Testing for the Valid Temperature response scenario
+Setting up the Mock HttpServlet Request and Response objects
+Setting up the parameter value for farenheitTemperature to a numerical value..
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Verifying if the Response returned is as expected..
+Passed
+.Testing for Invalid Number in order to verify if a NumberFormatException is thrown....
+Setting up the Mock HttpServlet Request and Response objects
+Setting up the parameter value for farenheitTemperature to a non-numerical value..
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Verifying if the Response returned is as expected..
+Passed
+
+Time: 0.036
+
+OK (3 tests)
+
+bash-3.2$ exit
+exit
+
+Script done on Wed Nov 19 23:21:20 2014
