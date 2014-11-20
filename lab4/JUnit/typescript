@@ -1,0 +1,193 @@
+Script started on Wed Nov 19 23:41:37 2014
+[?1034hbash-3.2$ javac -cp junit-4.11.jar:. RationalTest.java Rational.java
+bash-3.2$ java -cp junit-4.11.jar:. RationalTest
+..Executing test...
+F..Executing test...
+Test Completed.
+.Executing test...
+E.46341* 46341 = -2147479015
+46340* 46340 = 2147395600
+low high: 0/1 46340/1
+square of midpoint is: 536848900/1
+low high: 0/1 23170/1
+square of midpoint is: 134212225/1
+low high: 0/1 11585/1
+square of midpoint is: 134212225/4
+low high: 0/1 11585/2
+square of midpoint is: 134212225/16
+low high: 0/1 11585/4
+square of midpoint is: 134212225/64
+low high: 0/1 11585/8
+square of midpoint is: 134212225/256
+low high: 0/1 11585/16
+square of midpoint is: 134212225/1024
+low high: 0/1 11585/32
+square of midpoint is: 134212225/4096
+low high: 0/1 11585/64
+square of midpoint is: 134212225/16384
+low high: 0/1 11585/128
+square of midpoint is: 134212225/65536
+low high: 0/1 11585/256
+square of midpoint is: 134212225/262144
+low high: 0/1 11585/512
+square of midpoint is: 134212225/1048576
+low high: 0/1 11585/1024
+square of midpoint is: 134212225/4194304
+low high: 0/1 11585/2048
+square of midpoint is: 134212225/16777216
+low high: 0/1 11585/4096
+square of midpoint is: 134212225/67108864
+low high: 0/1 11585/8192
+square of midpoint is: 134212225/268435456
+low high: 0/1 11585/16384
+square of midpoint is: 134212225/1073741824
+.Executing test...
+E.Executing test...
+F.Executing test...
+F.Executing test...
+E.Executing test...
+F.Executing test...
+F.Executing test...
+F.Executing test...
+E.Executing test...
+E.Executing test...
+F.Executing test...
+Test Completed.
+.Executing test...
+Test Completed.
+..Executing test...
+F.Executing test...
+F.Executing test...
+F.Executing test...
+F.Executing test...
+E.Executing test...
+E.Executing test...
+Test Completed.
+
+Time: 0.006
+There were 7 errors:
+1) testZerosInputToDivides(RationalTest)java.lang.ArithmeticException: / by zero
+	at Rational.<init>(Rational.java:23)
+	at RationalTest.testZerosInputToDivides(RationalTest.java:109)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+2) testOnesNZerosInputToMinus(RationalTest)java.lang.ArithmeticException: / by zero
+	at Rational.plus(Rational.java:63)
+	at Rational.minus(Rational.java:83)
+	at RationalTest.testOnesNZerosInputToMinus(RationalTest.java:93)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+3) testZerosInputToMinus(RationalTest)java.lang.ArithmeticException: / by zero
+	at Rational.plus(Rational.java:63)
+	at Rational.minus(Rational.java:83)
+	at RationalTest.testZerosInputToMinus(RationalTest.java:84)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+4) testZerosInputToGCD(RationalTest)java.lang.ArithmeticException: / by zero
+	at Rational.<init>(Rational.java:23)
+	at RationalTest.testZerosInputToGCD(RationalTest.java:65)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+5) testZerosWithSetToleranceMethod(RationalTest)java.lang.ArithmeticException: / by zero
+	at Rational.<init>(Rational.java:23)
+	at RationalTest.testZerosWithSetToleranceMethod(RationalTest.java:203)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+6) testRootForException(RationalTest)java.lang.NullPointerException
+	at RationalTest.testRootForException(RationalTest.java:227)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+7) testZerosInputToPlus(RationalTest)java.lang.ArithmeticException: / by zero
+	at Rational.<init>(Rational.java:23)
+	at RationalTest.testZerosInputToPlus(RationalTest.java:71)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+There were 11 failures:
+1) testComboInputToTimes(RationalTest)junit.framework.AssertionFailedError: expected:<-1/0> but was:<0>
+	at RationalTest.testComboInputToTimes(RationalTest.java:169)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+2) testOnesNZerosInputToTimes(RationalTest)junit.framework.AssertionFailedError: expected:<1/0> but was:<0>
+	at RationalTest.testOnesNZerosInputToTimes(RationalTest.java:160)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+3) testPlusForLcm(RationalTest)junit.framework.AssertionFailedError: expected:<2> but was:<-2/1>
+	at RationalTest.testPlusForLcm(RationalTest.java:257)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+4) testZerosInputToTimes(RationalTest)junit.framework.AssertionFailedError: expected:<0/1> but was:<0>
+	at RationalTest.testZerosInputToTimes(RationalTest.java:141)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+5) testComboInputToPlus(RationalTest)junit.framework.AssertionFailedError: expected:<-2/1> but was:<2>
+	at RationalTest.testComboInputToPlus(RationalTest.java:197)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+6) testComboWithNegativeNumbers(RationalTest)junit.framework.AssertionFailedError: expected:<2/1> but was:<2>
+	at RationalTest.testComboWithNegativeNumbers(RationalTest.java:132)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+7) testNegativeInputToTimes(RationalTest)junit.framework.AssertionFailedError: expected:<1/1> but was:<1>
+	at RationalTest.testNegativeInputToTimes(RationalTest.java:188)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+8) testOnesInputToDivides(RationalTest)junit.framework.AssertionFailedError: expected:<1/1> but was:<1>
+	at RationalTest.testOnesInputToDivides(RationalTest.java:123)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+9) testAbsWithPosNegComboValues(RationalTest)junit.framework.AssertionFailedError: expected:<1/2> but was:<27>
+	at RationalTest.testAbsWithPosNegComboValues(RationalTest.java:213)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+10) testOnesInputToMinus(RationalTest)junit.framework.AssertionFailedError: expected:<0> but was:<0/1>
+	at RationalTest.testOnesInputToMinus(RationalTest.java:103)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+11) testOnesInputToTimes(RationalTest)junit.framework.AssertionFailedError: expected:<1/1> but was:<1>
+	at RationalTest.testOnesInputToTimes(RationalTest.java:151)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at RationalTest.main(RationalTest.java:268)
+
+FAILURES!!!
+Tests run: 26,  Failures: 11,  Errors: 7
+
+bash-3.2$ exit
+exit
+
+Script done on Wed Nov 19 23:41:54 2014
