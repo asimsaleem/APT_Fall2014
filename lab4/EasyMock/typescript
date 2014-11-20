@@ -1,0 +1,90 @@
+Script started on Wed Nov 19 22:44:08 2014
+[?1034hbash-3.2$ javac -cp junit-4.11.jar:easymock-3.0.jar:. TestJukebox.java Jukebox.java Mp3Player.java MockMp3Player.java T estMp3Player.java TestMockMp3Player.java
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+bash-3.2$ java -cp junit-4.11.jar:.:easymock-3.0.jar:objenesis-tck-1.2.jar:cglib-nodep-2.2.2.jar:hamcrest-core-1.3.jar  org.junit.runner.JUnitCore TestMp3Player
+JUnit version 4.11
+.Loading the list of Songs..
+Play option selected
+Verifying if a song can be played by verifying if a list of songs exists...
+List of Songs is of size: 4
+Playing the song now..
+Verifying if the song is playing. The result is: true
+Prev option selected.
+Moving the song position to the previous point after verifying if there is next position
+Current Song being played is: Bill Chase -- Open Up Wide
+Verifying if the song is playing. The result is: true
+Next option selected.
+Moving the song position to the next point after verifying if there is next position
+Current Song being played is: Jethro Tull -- Locomotive Breath
+Next option selected.
+Moving the song position to the next point after verifying if there is next position
+Current Song being played is: The Boomtown Rats -- Monday
+Prev option selected.
+Moving the song position to the previous point after verifying if there is next position
+Current Song being played is: Jethro Tull -- Locomotive Breath
+Next option selected.
+Moving the song position to the next point after verifying if there is next position
+Current Song being played is: The Boomtown Rats -- Monday
+Next option selected.
+Moving the song position to the next point after verifying if there is next position
+Current Song being played is: Carl Orff -- O Fortuna
+Next option selected.
+Moving the song position to the next point after verifying if there is next position
+Current Song being played is: Carl Orff -- O Fortuna
+Verifying if the song is playing. The result is: true
+.Loading the list of Songs..
+Verifying if the song is playing. The result is: false
+Play option selected
+Verifying if a song can be played by verifying if a list of songs exists...
+List of Songs is of size: 4
+Playing the song now..
+Verifying if the song is playing. The result is: true
+Current position of Song is: 1.0
+Pause option selected
+Pausing the current song playing
+Paused successfully
+Current position of Song is: 1.0
+Stop option selected
+Stopping the current song playing
+Stopped successfully
+Current position of Song is: 0.0
+.Verifying if the song is playing. The result is: false
+Play option selected
+Verifying if a song can be played by verifying if a list of songs exists...
+List of Songs is Empty. No song is available to play
+Verifying if the song is playing. The result is: false
+Current position of Song is: 0.0
+Pause option selected
+Pausing the current song playing
+Paused successfully
+Current position of Song is: 0.0
+Verifying if the song is playing. The result is: false
+Stop option selected
+Stopping the current song playing
+Stopped successfully
+Current position of Song is: 0.0
+Verifying if the song is playing. The result is: false
+
+Time: 0.005
+
+OK (3 tests)
+
+bash-3.2$ clear
+[H[2Jbash-3.2$ java -cp junit-4.11.jar:.:easymock-3.0.jar:objenesis-tck-1.2.jar:cglib-nodep-2.2.2.jar:hamcrest-core-1.3.jar  org.junit.runner.JUnitCore TestMockMp3Player
+JUnit version 4.11
+.Setup the Mock Object for the Mp3Player object..
+Executing the test case for Play with the EasyMock Objects...
+.Setup the Mock Object for the Mp3Player object..
+Executing the test case for Advance with the EasyMock Objects...
+.Setup the Mock Object for the Mp3Player object..
+Executing the test case for Play with No List with the EasyMock Objects...
+
+Time: 0.074
+
+OK (3 tests)
+
+bash-3.2$ exit
+exit
+
+Script done on Wed Nov 19 22:45:17 2014
