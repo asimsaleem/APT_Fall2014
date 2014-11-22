@@ -1,4 +1,4 @@
-Script started on Thu Nov 20 00:00:36 2014
+Script started on Sat Nov 22 13:02:33 2014
 [?1034hbash-3.2$ javac -cp selenium-server-standalone-2.44.0.jar:. TemperatureConversionFF.java
 bash-3.2$ java -cp selenium-server-standalone-2.44.0.jar:. TemperatureConversionFF
 Test Case: Login with UserId/Password: andy/apple
@@ -52,12 +52,13 @@ Processing Test Case for UserId/Pwd Combo: andy/apple
 Title of this Page is: Frequent Login
 UserId/Pwd for andy/apple Failed Miserably
 UserId/Pwd test with Wrong Password was LOCKED OUT as EXPECTED @ Attempt 4
-Putting the process to sleep for 1 minute to attempt logging in again with proper credentials
+Putting the process to sleep for 15 Seconds to attempt logging in again with proper credentials
 Thread is awake. Trying to login again with proper credentials
 Processing Test Case for UserId/Pwd Combo: andy/apple
 Title of this Page is: Online temperature conversion calculator
 UserId/Pwd for andy/apple Passed Successfully
-UserId/Pwd test with proper User Id/Password Case was SUCCESSFUL as EXPECTED
+UserId/Pwd test with proper User Id/Password Case was SUCCESSFUL which is WRONG
+Requirement is: Three failed logins for a user in ten seconds should lead to a 1 minute lockout.
 ****************************************
 Sleeping for 10 Seconds to ensure that the User can login again to test other scenarios..
 Test Case: Login with UserId/Pwd: andy/apple
@@ -68,8 +69,8 @@ UserId/Pwd test with Wrong Password Case was SUCCESSFUL as EXPECED
 Temperature value is:150 Farenheit = 65.56 Celsius
 Farenheit Temperature value is: 65.56 Celsius
 Farenheit Value is:  65.56 
-Value of Precision for Float :65.56
 Two Digit Precision Test was SUCCESSFUL as EXPECTED
+****************************************
 Test Case: Login with UserId/Pwd: bob/bathtub
 Processing Test Case for UserId/Pwd Combo: bob/bathtub
 Title of this Page is: Online temperature conversion calculator
@@ -78,8 +79,8 @@ UserId/Pwd Login was SUCCESSFUL
 Temperature value is:250 Farenheit = 121.11 Celsius
 Farenheit Temperature value is: 121.11 Celsius
 Farenheit Value is:  121.11 
-Value of Precision for Float :121.11
-One Digit Precision Test was SUCCESSFUL as EXPECTED
+One Digit Precision Test was FAILURE. EXPECTED 121.1 but got 121.11
+Requirement is: Temperature results should be 2 places of precision for temperatures from 0 to 212 degrees Farenheit, inclusive, and 1 place of precision otherwise.
 ****************************************
 Sleeping for 10 Seconds to ensure that the User can login again to test other scenarios..
 Test Case: Login with UserId/Pwd: charley/china
@@ -102,7 +103,7 @@ NumberFormatException Test for Invalid Input was SUCCESSFUL as EXPECTED
 ****************************************
 URL Parameter Test was FAILURE as EXPECTED
 ****************************************
-bash-3.2$ exiot[K[Kt
+bash-3.2$ exit
 exit
 
-Script done on Thu Nov 20 00:02:38 2014
+Script done on Sat Nov 22 13:03:57 2014

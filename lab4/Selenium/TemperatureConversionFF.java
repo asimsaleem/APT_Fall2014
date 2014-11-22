@@ -1,3 +1,4 @@
+//package Selenium;
 
 import java.util.List;
 
@@ -104,8 +105,7 @@ public class TemperatureConversionFF {
         //Need to reset the test by going back
         driver.navigate().back();
 
-        //Three failed logins for a user in ten seconds should lead to a 1 minute lockout.
-        
+        //Requirement: Three failed logins for a user in ten seconds should lead to a 1 minute lockout.
     	//Test Case 7:
         System.out.println("Test Case: Login with UserId/Pwd: andy/app");
         boolean isTestForLockoutSuccessful1 = isUserIdPwdComboSuccessful(driver, "andy  ", "app");
@@ -149,13 +149,21 @@ public class TemperatureConversionFF {
         //Need to reset the test by going back
         driver.navigate().back();
         
+        /*
         System.out.println("Putting the process to sleep for 1 minute to attempt logging in again with proper credentials");
         Thread.sleep(60 * 1000);
         System.out.println("Thread is awake. Trying to login again with proper credentials");
-   
+        */
+        System.out.println("Putting the process to sleep for 15 Seconds to attempt logging in again with proper credentials");
+        Thread.sleep(15 * 1000);
+        System.out.println("Thread is awake. Trying to login again with proper credentials");
+
+        
         boolean isTestForLockoutSuccessful5 = isUserIdPwdComboSuccessful(driver, "andy", "apple");
         if(isTestForLockoutSuccessful5){
-        	System.out.println("UserId/Pwd test with proper User Id/Password Case was SUCCESSFUL as EXPECTED");
+        	System.out.println("UserId/Pwd test with proper User Id/Password Case was SUCCESSFUL which is WRONG");
+          	System.out.println("Requirement is: Three failed logins for a user in ten seconds should lead to a 1 minute lockout.");
+            
         }else if(!isTestForLockoutSuccessful5){
         	System.out.println("UserId/Pwd test with proper User Id/Password Case was FAILURE");
         } 
@@ -167,8 +175,7 @@ public class TemperatureConversionFF {
         System.out.println("Sleeping for 10 Seconds to ensure that the User can login again to test other scenarios..");
         Thread.sleep(10000);
 
-    	//Temperature results should be 2 places of precision for temperatures from 0 to 212 degrees Farenheit, inclusive, and 1 place of precision otherwise.
- 
+    	//Requirement: Temperature results should be 2 places of precision for temperatures from 0 to 212 degrees Farenheit, inclusive, and 1 place of precision otherwise.
         //Test Case 8:
         System.out.println("Test Case: Login with UserId/Pwd: andy/apple");
         boolean isTestForLoginSuccessful = isUserIdPwdComboSuccessful(driver, "andy", "apple");
@@ -191,10 +198,7 @@ public class TemperatureConversionFF {
         	String[] farenheitValueList = tempList[1].split("Celsius");
         	System.out.println("Farenheit Value is: " + farenheitValueList[0]);
         	
-        	float verifyPrecisionOfFloat = Float.parseFloat(farenheitValueList[0]);
-        	System.out.println("Value of Precision for Float :" + verifyPrecisionOfFloat);
-        	
-        	if(verifyPrecisionOfFloat > 65 && verifyPrecisionOfFloat < 66 ){
+        	if(farenheitValueList[0].contains("65.56")){
         		System.out.println("Two Digit Precision Test was SUCCESSFUL as EXPECTED");
             }else {
             	System.out.println("Two Digit Precision Test was FAILURE");
@@ -207,6 +211,7 @@ public class TemperatureConversionFF {
         driver.navigate().back();
         //Need to reset the test by going back again
         driver.navigate().back();
+    	System.out.println("****************************************");
 
         System.out.println("Test Case: Login with UserId/Pwd: bob/bathtub");
         isTestForLoginSuccessful = isUserIdPwdComboSuccessful(driver, "bob", "bathtub");
@@ -229,12 +234,10 @@ public class TemperatureConversionFF {
         	String[] farenheitValueList = tempList[1].split("Celsius");
         	System.out.println("Farenheit Value is: " + farenheitValueList[0]);
         	
-        	float verifyPrecisionOfFloat = Float.parseFloat(farenheitValueList[0]);
-        	System.out.println("Value of Precision for Float :" + verifyPrecisionOfFloat);
-        	
-        	if(verifyPrecisionOfFloat > 121 && verifyPrecisionOfFloat < 122 ){
-        		System.out.println("One Digit Precision Test was SUCCESSFUL as EXPECTED");
-            }else {
+        	if(farenheitValueList[0].contains("121.1")){
+        		System.out.println("One Digit Precision Test was FAILURE. EXPECTED 121.1 but got 121.11");
+           		System.out.println("Requirement is: Temperature results should be 2 places of precision for temperatures from 0 to 212 degrees Farenheit, inclusive, and 1 place of precision otherwise.");
+        	}else {
             	System.out.println("One Digit Precision Test was FAILURE");
             } 
         }else if(!isTestForLoginSuccessful){
