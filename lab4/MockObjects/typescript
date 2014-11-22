@@ -1,33 +1,143 @@
-Script started on Wed Nov 19 23:21:08 2014
-[?1034hbash-3.2$ javac -cp junit-4.11.jar:.:mockobjects-0.6-core.jar:guava-10.0.1.jar:selenium-server-standalone-2.11.0.jar:mo ckobjects-0.6-j1.4-j2ee1.2.jar:. TestingLabConverterServlet.java Test_TestingLabConverterServlet.java
-bash-3.2$ java -cp junit-4.11.jar:.:mockobjects-0.6-core.jar:guava-10.0.1.jar:selenium-server-standalone-2.11.0.jar:moc kobjects-0.6-j1.4-j2ee1.2.jar org.junit.runner.JUnitCore Test_TestingLabConverterServlet
+Script started on Sat Nov 22 12:35:02 2014
+[?1034hbash-3.2$ javac -cp junit-4.11.jar:.:mockobjects-0.6-core.jar:guava-10.0.1.jar:selenium-server-standalone-2.11.0.jar:mock objects-0.6-j1.4-j2ee1.2.jar:. TestingLabConverterServlet.java Test_TestingLabConverterServlet.java
+bash-3.2$ java -cp junit-4.11.jar:.:mockobjects-0.6-core.jar:guava-10.0.1.jar:selenium-server-standalone-2.11.0.jar:mocko bjects-0.6-j1.4-j2ee1.2.jar org.junit.runner.JUnitCore Test_TestingLabConverterServlet
 JUnit version 4.11
-.Testing for NULL or No parameter being passed....
-Setting up the Mock HttpServlet Request and Response objects
-Setting the expected Content type in return when the code is executed to HTML
-Invoking the GET operation...
-Verifying if the Response returned is as expected..
-Passed
-.Testing for the Valid Temperature response scenario
-Setting up the Mock HttpServlet Request and Response objects
-Setting up the parameter value for farenheitTemperature to a numerical value..
-Setting the expected Content type in return when the code is executed to HTML
-Invoking the GET operation...
-Verifying if the Response returned is as expected..
-Passed
 .Testing for Invalid Number in order to verify if a NumberFormatException is thrown....
 Setting up the Mock HttpServlet Request and Response objects
 Setting up the parameter value for farenheitTemperature to a non-numerical value..
 Setting the expected Content type in return when the code is executed to HTML
 Invoking the GET operation...
 Verifying if the Response returned is as expected..
-Passed
+Test Completed
+.Testing for the Valid Temperature response scenario...
+Setting up the Mock HttpServlet Request and Response objects
+Setting up the parameter value for farenheitTemperature to a numerical value..
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Verifying if the Response returned is as expected..
+Test Completed
+.Testing for NULL or No parameter being passed...
+Setting up the Mock HttpServlet Request and Response objects
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Verifying if the Response returned is as expected..
+Test Completed
+.Testing for the Case Insensitive Parameter scenario
+Setting up the Mock HttpServlet Request and Response objects
+Setting up the parameter value for farenheitTemperature to be mixed Case..
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Verifying if the Response returned is as expected..
+Response is: <html><head><title>No Temperature</title></head><body><h2>Need to enter a temperature!</h2></body></html>
 
-Time: 0.036
+E.Testing for the Floating Point Number with Decimal Notation scenario
+Setting up the Mock HttpServlet Request and Response objects
+Setting up the parameter value for farenheitTemperature to a numerical value..
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Verifying if the Response returned is as expected with appropriate Deciman Notation..
+Response is: <html><head><title>Temperature Converter Result</title></head><body><h2>150 Farenheit = 65.56 Celsius </h2>
+<p><h3>The temperature in Austin is 451 degrees Farenheit</h3>
+</body></html>
 
-OK (3 tests)
+Test Completed
+.Testing for the One Digit Temperature Precision scenario...
+Setting up the Mock HttpServlet Request and Response objects
+Setting up the parameter value for farenheitTemperature to a numerical value..
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Verifying if the Response returned is as expected with a One digit precision..
+Response is: <html><head><title>Temperature Converter Result</title></head><body><h2>451 Farenheit = 232.78 Celsius </h2>
+<p><h3>The temperature in Austin is 451 degrees Farenheit</h3>
+</body></html>
+
+E.Testing for the Two Digit Temperature Precision scenario
+Setting up the Mock HttpServlet Request and Response objects
+Setting up the parameter value for farenheitTemperature to a numerical value..
+Setting the expected Content type in return when the code is executed to HTML
+Invoking the GET operation...
+Response is<html><head><title>Temperature Converter Result</title></head><body><h2>200 Farenheit = 93.33 Celsius </h2>
+<p><h3>The temperature in Austin is 451 degrees Farenheit</h3>
+</body></html>
+
+Verifying if the Response returned is as expected with a Two Digit Precision..
+Two Digit Precision Test Test Completed
+
+Time: 0.033
+There were 2 failures:
+1) test_case_insensitive_parameter(Test_TestingLabConverterServlet)
+junit.framework.AssertionFailedError
+	at junit.framework.Assert.fail(Assert.java:55)
+	at junit.framework.Assert.assertTrue(Assert.java:22)
+	at junit.framework.Assert.assertTrue(Assert.java:31)
+	at junit.framework.TestCase.assertTrue(TestCase.java:201)
+	at Test_TestingLabConverterServlet.test_case_insensitive_parameter(Test_TestingLabConverterServlet.java:166)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+2) test_one_digit_precision(Test_TestingLabConverterServlet)
+junit.framework.AssertionFailedError
+	at junit.framework.Assert.fail(Assert.java:55)
+	at junit.framework.Assert.assertTrue(Assert.java:22)
+	at junit.framework.Assert.assertTrue(Assert.java:31)
+	at junit.framework.TestCase.assertTrue(TestCase.java:201)
+	at Test_TestingLabConverterServlet.test_one_digit_precision(Test_TestingLabConverterServlet.java:120)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at junit.framework.TestCase.runTest(TestCase.java:176)
+	at junit.framework.TestCase.runBare(TestCase.java:141)
+	at junit.framework.TestResult$1.protect(TestResult.java:122)
+	at junit.framework.TestResult.runProtected(TestResult.java:142)
+	at junit.framework.TestResult.run(TestResult.java:125)
+	at junit.framework.TestCase.run(TestCase.java:129)
+	at junit.framework.TestSuite.runTest(TestSuite.java:255)
+	at junit.framework.TestSuite.run(TestSuite.java:250)
+	at org.junit.internal.runners.JUnit38ClassRunner.run(JUnit38ClassRunner.java:84)
+	at org.junit.runners.Suite.runChild(Suite.java:127)
+	at org.junit.runners.Suite.runChild(Suite.java:26)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:138)
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:117)
+	at org.junit.runner.JUnitCore.runMain(JUnitCore.java:96)
+	at org.junit.runner.JUnitCore.runMainAndExit(JUnitCore.java:47)
+	at org.junit.runner.JUnitCore.main(JUnitCore.java:40)
+
+FAILURES!!!
+Tests run: 7,  Failures: 2
 
 bash-3.2$ exit
 exit
 
-Script done on Wed Nov 19 23:21:20 2014
+Script done on Sat Nov 22 12:35:19 2014
